@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+	   http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+	<!--<context:property-placeholder>: 读取属性文件,location属性指定读取文件的位置-->
+	<context:property-placeholder location="classpath:person.properties"/>
+	<!-- <context:component-scan>: 包扫描,只要标注了@Controller、@Service、@Repository、@Component -->
+	<!--<context:component-scan base-package="org.example.componentScan" use-default-filters="false"/> -->
+	<bean id="person" class="org.example.componentScan.entity.Person"  scope="prototype">
+		<property name="age" value="${person.age}"/>
+		<property name="name" value="zhangsan"/>
+	</bean>
+	
+	<!-- 开启基于注解版的切面功能 -->
+	<aop:aspectj-autoproxy/>
+	
+	<!-- <tx:annotation-driven/> -->
+
+</beans>
